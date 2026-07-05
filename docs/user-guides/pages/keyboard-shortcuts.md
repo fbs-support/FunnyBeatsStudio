@@ -38,18 +38,28 @@ These shortcuts apply in the points timeline layer.
 | `Ctrl+V` | Paste copied points at the visible timeline center |
 | `Enter` | Add a position `50` point at the playhead |
 | `Delete` | Delete selected points |
+| `Left` | Select the previous point on the active axis |
+| `Ctrl+Left` | Add-select the previous point on the active axis |
+| `Right` | Select the next point on the active axis |
+| `Ctrl+Right` | Add-select the next point on the active axis |
 | `Ctrl+Z` | Undo |
 | `Ctrl+Y` | Redo |
 
 ## Beat grid editing
 
-These shortcuts apply in the Beat grid timeline layer.
+These shortcuts apply in the Beat grid timeline layer. `Mixed` is read-only;
+use `Audio` or `Beatbar` for selection and editing.
 
 | Shortcut | Action |
 | --- | --- |
-| `B` | Add a beat at the playhead |
-| `A` | Add an accent at the playhead |
-| `Delete` | Delete selected beat or accent markers |
+| `Ctrl+A` | Select all visible markers on the active editable source tab |
+| `B` | Add a beat at the playhead on Audio or Beatbar |
+| `A` | Add an accent at the playhead on Audio only |
+| `Delete` | Delete selected markers on Audio or Beatbar |
+| `Left` | Select the previous marker on Audio or Beatbar |
+| `Ctrl+Left` | Add-select the previous marker on Audio or Beatbar |
+| `Right` | Select the next marker on Audio or Beatbar |
+| `Ctrl+Right` | Add-select the next marker on Audio or Beatbar |
 
 ## Timeline view
 

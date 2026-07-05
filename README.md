@@ -75,3 +75,9 @@ If this tool helps your workflow, you can leave a small tip or support developme
 [<img src="https://storage.ko-fi.com/cdn/kofi1.png?v=6" width="128px" alt="Buy me a coffee">](https://ko-fi.com/T3S522HQE2)
 
 Support goes toward hosting, testing, documentation, and ongoing maintenance.
+
+## Changelog
+
+### 1.0.0
+
+Initial release build.

@@ -98,7 +98,8 @@ Use these commands when the analysis is close but not perfect:
 
 - `B`: add a beat at the playhead.
 - `A`: add an accent at the playhead.
-- `Delete`: delete selected beat or accent markers.
+- `Delete`: delete selected beat or accent markers on the Audio tab, or
+  committed beatbar hits on the Beatbar tab.
 - `Fill from selected tempo`: project missing beats forward or backward from
   selected beats.
 - `Redistribute run`: keep the selected run endpoints and space interior beats

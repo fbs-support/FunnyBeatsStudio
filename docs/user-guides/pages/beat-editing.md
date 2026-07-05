@@ -10,6 +10,12 @@ Beat commands work in the Beat grid timeline layer, separate from point
 editing. Selecting one beat or accent seeks playback to that marker timestamp.
 Selecting multiple markers changes only the beat selection.
 
+The Beat grid layer has three source tabs:
+
+- `Mixed`: read-only comparison of audio beats and beatbar hits.
+- `Audio`: editable audio beat grid.
+- `Beatbar`: editable committed beatbar hits.
+
 Markers have three common meanings:
 
 - `Beat`: primary rhythm markers used for beat order and ordinary snapping.
@@ -32,6 +38,10 @@ Right-click the beat timeline for context commands. With no marker selected,
 the menu offers location-aware add commands. With a marker selection, the menu
 offers selection commands such as delete, toggle beat/accent, toggle downbeat,
 selection filtering, midpoint insertion, and span repair entries.
+
+Committed beatbar hits are edited from the `Beatbar` tab. Use `Delete` for
+false positives, or the same beat-repair timing commands used by Audio when
+the command is not accent, downbeat, or measure-start specific.
 
 Beat edits are undoable when they commit a change. Duplicate timestamps and
 other no-op edits report no change instead of creating Undo entries.
@@ -60,11 +70,16 @@ Use these commands when the analysis is close but needs local repair:
   using the current estimated BPM.
 - `Redistribute run`: keep selected run endpoints and space interior beats
   evenly.
-- `Delete`: remove false-positive selected markers.
+- `Delete`: remove false-positive selected beat, accent, or committed beatbar
+  hit markers.
 
 Accent repair commands add timing hints without changing the primary beat
 sequence. Use accent subdivisions or accent fills for rapid decoration moments,
 then clear accents in a span when there are too many.
+
+Beatbar hits do not store accent, downbeat, or measure-start state, so those
+commands are available only on the `Audio` tab. Beatbar fill from selected
+tempo is available when an audio beat grid has an estimated BPM.
 
 ## Timing repair
 
