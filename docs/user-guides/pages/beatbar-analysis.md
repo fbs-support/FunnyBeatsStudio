@@ -17,16 +17,14 @@ Beatbar analysis needs:
 - a calibrated beatbar or target region;
 - detector settings that match the visual cue.
 
-Deterministic State does not require optional AI assets. Cue (AI) and State
-(AI) require verified Beatbar AI assets from `Options > Beatbar AI Model`. When
-those assets are available, Cue (AI) is the normal default for visible cue
-events.
+`State` does not require optional AI assets. Cue (AI) and State (AI) require
+verified Beatbar AI assets from `Options > Beatbar AI Model`. When those assets
+are available, Cue (AI) is the normal default for visible cue events.
 
 ## Calibration concepts
 
-The calibration overlay is drawn directly on the video. It stores normalized
-video-frame rectangles, so the same calibration can be reused even when the
-window size changes.
+The calibration overlay is drawn directly on the video. The chosen regions can
+be reused even when the window size changes.
 
 Important regions:
 
@@ -49,11 +47,11 @@ Choose one of the three current detector styles:
 - `State (AI)`: model-backed target or instruction-state detection for flashes,
   glows, occlusion, target-state changes, or layouts with no reliable cue
   trajectory.
-- `State`: deterministic TargetState v2 CPU fallback for simple target-state
-  flashes or when optional AI assets, CUDA, or the worker are unavailable.
+- `State`: non-AI fallback for simple target-state flashes or when optional AI
+  assets are unavailable.
 
-Standalone deterministic `Cue tracking` is retired. Do not use old cue-template
-setup instructions for new projects.
+Standalone `Cue tracking` is retired. Do not use old cue-template setup
+instructions for new projects.
 
 ## Cue (AI) setup
 
@@ -70,13 +68,12 @@ Use Cue (AI) when a visible marker or cue event is the clearest timing signal.
 6. Use `Recommend settings` when available, then review the pending full-scan
    result before applying it.
 
-Cue (AI) uses an internal proposal/scoring pipeline. It does not store old
-cue-template samples in the project file.
+Cue (AI) does not require the retired cue-template setup used by older guides.
 
 ## State setup
 
-Use deterministic State when the target area flashes, fills, changes color, or
-otherwise enters a visible hit state and the local CPU fallback is sufficient.
+Use `State` when the target area flashes, fills, changes color, or otherwise
+enters a visible hit state and you do not need the optional AI assets.
 
 1. Set the beatbar and target regions.
 2. Capture at least a few clear hit and non-hit examples.
@@ -91,9 +88,8 @@ for a more robust model-backed state scorer.
 ## State (AI)
 
 Use `Options > Beatbar AI Model` before using State (AI). The app verifies the
-approved local assets and runs the model through an external worker. The main
-project file stores only safe analysis definitions and results, not local model
-paths or frame data.
+required local AI assets before enabling model-backed analysis. Projects can be
+shared without including those local assets.
 
 For State (AI):
 
@@ -104,8 +100,7 @@ For State (AI):
 - review `Calibration review` quality before full scan.
 
 If the AI guidance says calibration is insufficient, add clearer samples,
-remove mistaken samples, tighten the target region, or fall back to deterministic
-State.
+remove mistaken samples, tighten the target region, or fall back to `State`.
 
 ## Preview before full scan
 
@@ -118,8 +113,7 @@ the previous valid result is preserved.
 Review the pending cue markers on the timeline before applying them. Pending
 markers use a different color from committed markers. Use `Minimum confidence`
 to hide lower-confidence final hits from the pending result; changing this
-slider does not rerun video analysis, audio snapping, scoring, or
-post-processing.
+slider only changes which pending markers are visible.
 
 Use:
 
@@ -162,9 +156,8 @@ To repair committed beatbar hits without rerunning analysis:
 4. Use `Delete`, midpoint insertion, fill, nudge, shift, stretch, redistribute,
    copy, or paste commands as needed.
 
-Beatbar edits are undoable and change only the saved
-`BeatbarAnalysisResult.Hits` list. Accent, downbeat, and measure-start commands
-are Audio-only because beatbar hits do not store those fields.
+Beatbar edits are undoable and affect committed beatbar hit markers only.
+Accent, downbeat, and measure-start commands are Audio-only.
 
 ## Practical review checklist
 

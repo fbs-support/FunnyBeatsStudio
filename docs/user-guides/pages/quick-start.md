@@ -30,7 +30,7 @@ Supported drag-and-drop video extensions are:
 - `.wmv`
 - `.m4v`
 
-When you load a video, the app probes metadata with ffprobe and attaches the
+When you load a video, the app reads its media information and attaches the
 video to the active project timeline. Loading a video does not automatically
 analyze beats or generate motion.
 
@@ -45,8 +45,8 @@ Use `File > Save` after loading the video.
 
 Project files use the `.fbsproj` format. They store editor state such as the
 loaded video reference, beat analysis data, beatbar data, and timeline points.
-They do not embed the video file, FFmpeg binaries, local model paths, decoded
-frames, or optional app-managed assets.
+They keep source videos, media tools, and optional analysis assets outside the
+project file.
 
 ## 4. Analyze beats
 
@@ -108,4 +108,4 @@ For your first project, keep the workflow simple:
 7. Export and inspect the `.funscript` output.
 
 After that path works, try beatbar analysis, multi-axis generation, optional
-HighPrecision analysis, or video replacement export.
+High precision analysis, or video replacement export.

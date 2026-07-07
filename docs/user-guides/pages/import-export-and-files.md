@@ -12,7 +12,7 @@ Use `File > Save` to save a project as `.fbsproj`.
 
 Project files store editor state such as:
 
-- the loaded video reference and metadata snapshot;
+- the loaded video reference and media information;
 - timeline points;
 - beat analysis and beat edits;
 - beatbar analysis definitions and results;
@@ -21,12 +21,9 @@ Project files store editor state such as:
 Project files do not embed:
 
 - source videos;
-- FFmpeg or ffprobe binaries;
-- local Python, model, package, cache, or runtime paths;
+- media tools or optional analysis assets;
 - generated media;
-- external command logs;
-- diagnostic artifact paths;
-- decoded frames or raw analysis evidence.
+- local troubleshooting files.
 
 Keep project files next to your working media if that helps organization, but
 do not move or rename the source video without expecting to reselect or reload
@@ -111,16 +108,6 @@ In both formats:
 Version `1.1` uses TCode-style axis IDs such as `R1`. Version `2.0` uses channel
 names such as `roll` and `vib1`.
 
-## Exported encoding
-
-Exported text files use:
-
-- UTF-8 without BOM;
-- LF line endings;
-- a final trailing newline.
-
-This keeps exports predictable in Git and compatible with common tooling.
-
 ## Video replacement export
 
 Use `View > Video replacement export` or press `Ctrl+4`.
@@ -148,6 +135,5 @@ media. It fails if no source video is loaded, no usable beat grid exists, the
 source library has no eligible files, or FFmpeg/ffprobe cannot be resolved.
 
 Video replacement export restores last-used folders and settings from
-application settings. It does not save render plans, source pools, random seeds,
-FFmpeg command lines, diagnostic paths, or generated media paths in project
-files.
+application settings. Generated videos and local troubleshooting details stay
+outside project files.

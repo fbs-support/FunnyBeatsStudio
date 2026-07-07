@@ -1,7 +1,7 @@
 # Troubleshooting
 
 Start with the status bar. FunnyBeatsStudio reports most workflow failures
-there first, and longer failures may point to a local diagnostic artifact.
+there first, and longer failures may point to a local diagnostic file.
 
 ## FFmpeg or ffprobe is not found
 
@@ -14,8 +14,8 @@ Check that:
 - both tools come from the same FFmpeg build when possible;
 - the app can access the folder.
 
-If explicit paths are blank, the app also checks executable-relative
-`tools/ffmpeg/bin` and then `PATH`.
+If explicit paths are blank, the app also checks `tools/ffmpeg/bin` inside the
+extracted app folder and then `PATH`.
 
 ## A video will not load
 
@@ -27,7 +27,7 @@ Check that:
 - the file is not locked by another application;
 - the path is still valid after moving or renaming files.
 
-Loading a video does not mutate the project until metadata probing succeeds.
+If video probing fails, no video is attached to the project.
 
 ## A matching funscript was not imported
 
@@ -42,7 +42,7 @@ example.funscript
 example.roll.funscript
 ```
 
-If the file uses an unsupported version, invalid JSON, unsupported axes, or
+If the file uses an unsupported version, invalid content, unsupported axes, or
 duplicate axis ownership, import is rejected instead of silently dropping data.
 Use `File > Import funscript` to test explicit import separately from video
 loading.
@@ -57,8 +57,8 @@ For `High precision`, open:
 - `Options > Python Runtime`;
 - `Options > Audio Stem Separation Model`.
 
-Check or install the required app-managed assets. HighPrecision also depends on
-compatible local NVIDIA CUDA support. If HighPrecision is not available, use
+Check or install the required assets. High precision also depends on compatible
+local NVIDIA CUDA support. If High precision is not available, use
 `Fast` or `Simple beat`, then repair the grid with Beat editing.
 
 If analysis produces too many or too few markers, adjust Detection sensitivity
@@ -90,9 +90,9 @@ the beat grid is already trustworthy.
 
 Open `Options > Beatbar AI Model`.
 
-Check or install the DINOv3 assets, confirm local CUDA/GPU availability, and
-verify any required upstream gated access. State and Cue deterministic detectors
-remain available without Beatbar AI assets.
+Check or install the Beatbar AI assets, confirm local CUDA/GPU availability, and
+verify any required upstream gated access. Non-AI beatbar workflows remain
+available without Beatbar AI assets.
 
 If the guidance says calibration needs clearer samples, remove mistaken samples,
 add clearer Hit examples and visible negative examples, or tighten the target
@@ -158,9 +158,8 @@ expensive than timeline edits.
 
 Open `Options > Diagnostics`, then open the diagnostics folder.
 
-Logs are local troubleshooting artifacts. They may contain local paths or
+Logs are local troubleshooting files. They may contain local paths or
 machine-specific details. Do not publish them without reviewing and removing
 private information first.
 
-Use the cleanup command to remove known diagnostic file types under known
-diagnostic roots.
+Use the cleanup command to remove app-created diagnostic files.

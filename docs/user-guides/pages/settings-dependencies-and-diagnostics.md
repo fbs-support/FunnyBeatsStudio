@@ -22,7 +22,7 @@ Language changes apply on the next app launch.
 
 The minimum accepted audio beat confidence filters which analyzed markers are
 shown and used for snapping. It does not change stored analysis results and is
-not the same as HighPrecision detection sensitivity.
+not the same as High precision detection sensitivity.
 
 ## Script export format
 
@@ -53,7 +53,7 @@ This panel controls media-tool resolution and media-processing performance:
 Resolution order for `ffmpeg` and `ffprobe` is:
 
 1. explicit user-configured executable path;
-2. executable-relative `tools/ffmpeg/bin`;
+2. `tools/ffmpeg/bin` inside the extracted app folder;
 3. `PATH`.
 
 Use explicit paths when troubleshooting. Keep `ffmpeg.exe` and `ffprobe.exe`
@@ -67,61 +67,61 @@ or exhaust GPU/CPU resources.
 
 Open `Options > Storage Location`.
 
-This panel controls where app-managed external artifacts live. When unset, the
-default root is under local application data for FunnyBeatsStudio. A custom root
-moves the managed layout under that folder for future checks and installs.
+This panel controls where optional analysis assets and stem separation cache
+files are kept. When unset, the app chooses local per-user storage. Custom
+locations affect future checks, installs, and stem separation runs.
 
-Changing the storage root does not migrate, copy, or delete existing files. It
-clears verified artifact targets, so optional Python, stem, and beatbar AI
-assets must be checked again before dependent workflows are enabled.
+Changing the asset storage location does not migrate, copy, or delete existing
+files. After changing it, check optional Python, stem, and beatbar AI assets
+again before using dependent workflows.
+
+Use `Clean Stem Cache` to remove app-created stem cache files in the selected
+cache location. The cleanup leaves unrelated files and folders alone.
 
 ## Python Runtime
 
 Open `Options > Python Runtime`.
 
-This panel manages the pinned app-owned Python worker runtime used by approved
-external workers. It can:
+This panel manages the optional Python runtime used by advanced local analysis.
+It can:
 
 - check the installed runtime;
-- download and extract the pinned runtime;
+- download and extract the required runtime;
 - cancel an operation.
 
-The app does not use your global Python installation by default, does not modify
-`PATH`, and does not write runtime provenance to project files.
+The app does not use your global Python installation by default and does not
+modify `PATH`.
 
 ## Audio Stem Separation Model
 
 Open `Options > Audio Stem Separation Model`.
 
-This panel manages optional HighPrecision audio-analysis assets. It can check or
-download the approved NVIDIA CUDA stem package and model assets after explicit
-user action.
+This panel manages optional High precision audio-analysis assets. It can check
+or download the required stem-separation assets after explicit user action.
 
-The panel cannot be used until the Python runtime target is current. High
-precision beat analysis is enabled only when both the Python runtime and stem
-assets are verified.
+The panel cannot be used until the Python runtime is current. High precision
+beat analysis is enabled only when both the Python runtime and stem assets are
+verified.
 
 ## Beatbar AI Model
 
 Open `Options > Beatbar AI Model`.
 
-This panel manages optional local DINOv3 assets for State (AI) and Cue (AI)
+This panel manages optional local AI assets for State (AI) and Cue (AI)
 beatbar workflows. It is separate from the audio stem model panel.
 
 The panel can:
 
-- check local package and model status;
+- check local asset status;
 - download approved assets;
 - cancel an operation;
-- accept the current local artifact notice; and
+- accept the current local asset notice; and
 - save or clear a masked Hugging Face access token for explicit gated downloads.
 
-The token is stored in protected local credential storage, used only for the
-explicit download action, and must not be written to settings, project files, or
-logs. The token box is never pre-filled; newly typed text is pending session
-input until saved or used for download.
-There is no CPU fallback for the model-backed beatbar path. Deterministic
-beatbar detectors remain available without these AI assets.
+The token is stored securely and used only for the explicit download action. The
+token box is never pre-filled after saving.
+There is no CPU fallback for the model-backed beatbar path. Non-AI beatbar
+workflows remain available without these AI assets.
 
 ## Diagnostics
 
@@ -129,30 +129,29 @@ Open `Options > Diagnostics`.
 
 Diagnostics are local files for troubleshooting. They can include:
 
-- external command `.log` files;
-- HighPrecision rhythm diagnostic `.json` files;
-- motion generation diagnostic `.json` files;
-- beatbar analysis diagnostic `.json` files;
-- video replacement diagnostic `.json` or `.txt` files;
-- unhandled exception `.log` files.
+- operation logs;
+- analysis diagnostics;
+- export diagnostics;
+- crash reports.
 
 Diagnostics are not project data. Do not paste local diagnostic paths, local
 media paths, or machine-specific details into public issue comments, release
 notes, or pull request text.
 
-Use the diagnostics panel to open the logs folder or clean known diagnostic
-roots. Cleanup targets only the known diagnostic file types under known roots.
+Use the diagnostics panel to open the logs folder or remove app-created
+diagnostic files.
 
 ## Last-used workflow settings
 
 Some panels remember last-used values in application settings:
 
 - Motion generation stores preview inputs after `Generate preview`.
+- Point modifiers store selected-point modifier inputs after a modifier Apply.
 - Video replacement export stores export inputs when an export starts.
 
 These settings are restored on the next app launch. They are not saved in
-project files and do not persist generated previews, render plans, diagnostics,
-source pools, random seeds, or local output media paths.
+project files and do not include generated previews, temporary export planning
+data, diagnostics, or local output paths.
 
 ## Settings buttons
 

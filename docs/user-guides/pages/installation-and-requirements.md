@@ -13,7 +13,7 @@ and adjust the result before export.
 - A release ZIP built for `win-x64`.
 - Local video files that FFmpeg can read.
 - Enough disk space for extracted app files, project files, diagnostics, and
-  optional app-managed model assets.
+  optional local analysis assets.
 
 The release ZIP is self-contained for the .NET desktop app runtime. End users do
 not need to install the .NET SDK to run the release build.
@@ -27,7 +27,7 @@ beatbar analysis, or video replacement export.
 You can make FFmpeg available in one of these ways:
 
 - Set explicit paths in `Options > FFmpeg Settings`.
-- Place the tools under an executable-relative `tools/ffmpeg/bin` folder.
+- Place the tools in `tools/ffmpeg/bin` inside the extracted app folder.
 - Add `ffmpeg` and `ffprobe` to `PATH`.
 
 Use matching builds of `ffmpeg.exe` and `ffprobe.exe` from the same FFmpeg
@@ -35,22 +35,22 @@ distribution when possible.
 
 ## Optional dependencies
 
-Some advanced analysis modes use app-managed local assets:
+Some advanced analysis modes use optional local assets:
 
-- `Options > Python Runtime` manages the pinned Python worker runtime.
-- `Options > Audio Stem Separation Model` manages the approved HighPrecision
-  stem-analysis assets.
-- `Options > Beatbar AI Model` manages the optional local DINOv3 beatbar AI
-  assets.
+- `Options > Python Runtime` manages the optional Python runtime for advanced
+  analysis.
+- `Options > Audio Stem Separation Model` manages optional High precision
+  audio-analysis assets.
+- `Options > Beatbar AI Model` manages optional local beatbar AI assets.
 
 The app does not use your global Python installation by default. Optional assets
 are checked, installed, and verified through the settings panels, after explicit
 user action.
 
-HighPrecision audio analysis and model-backed beatbar AI features may require a
-compatible NVIDIA GPU, CUDA-capable runtime support, and enough VRAM. Simpler
+High precision audio analysis and model-backed beatbar AI features may require a
+compatible NVIDIA GPU, matching driver support, and enough VRAM. Simpler
 editing, import/export, manual beat editing, and non-AI beatbar workflows remain
-available without those optional model assets.
+available without those optional assets.
 
 ## Install from a release ZIP
 
@@ -73,7 +73,7 @@ the app and its supporting files can be found normally.
   loading and playback work.
 - Open `Options > Diagnostics` only when you need extra logs for troubleshooting.
 - Install optional Python, stem, or beatbar AI assets only if you plan to use
-  HighPrecision or model-backed analysis.
+  High precision or model-backed analysis.
 
 ## Updating the app
 
@@ -92,6 +92,6 @@ installation folder.
 FunnyBeatsStudio release ZIP builds are portable. To remove the app, close it
 and delete the extracted app folder.
 
-Application settings, diagnostics, caches, and optional app-managed assets may
+Application settings, diagnostics, caches, and optional analysis assets may
 live outside the extracted app folder. Use the settings panels to review storage
 locations before deleting external data manually.

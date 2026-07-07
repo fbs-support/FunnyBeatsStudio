@@ -43,24 +43,6 @@ are only needed for advanced analysis modes.
 See the [Quick start guide](docs/user-guides/pages/quick-start.md) for the
 step-by-step version with screenshots.
 
-## Documentation
-
-- [Installation and requirements](docs/user-guides/pages/installation-and-requirements.md)
-- [Quick start](docs/user-guides/pages/quick-start.md)
-- [Editor basics](docs/user-guides/pages/editor-basics.md)
-- [Beat analysis and editing](docs/user-guides/pages/beat-analysis-and-editing.md)
-- [Motion generation](docs/user-guides/pages/motion-generation.md)
-- [Import, export, and files](docs/user-guides/pages/import-export-and-files.md)
-- [Troubleshooting](docs/user-guides/pages/troubleshooting.md)
-
-## Notes
-
-Generated timelines are drafts. Always review timing, point placement, speed
-limits, and export format before using the result elsewhere.
-
-Project files store editor state and references to your media. They do not embed
-the original video, FFmpeg binaries, local model files, or generated exports.
-
 ## Legal and privacy
 
 - [License](LICENSE.md)
@@ -78,6 +60,4 @@ Support goes toward hosting, testing, documentation, and ongoing maintenance.
 
 ## Changelog
 
-### 1.0.0
-
-Initial release build.
+See [Release Notes](./RELEASE_NOTES.md) for version-to-version changes.

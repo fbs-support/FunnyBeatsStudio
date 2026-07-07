@@ -12,7 +12,7 @@ Use `View > Beat generation` or press `Ctrl+1`.
 
 The panel has two main paths:
 
-- `Simple beat` creates a deterministic BPM grid from typed values.
+- `Simple beat` creates a BPM grid from typed values.
 - `Audio analysis` analyzes the loaded video's audio and stores detected beat
   and accent markers in the project.
 
@@ -36,12 +36,11 @@ The `Audio analysis` tab exposes these modes:
 
 - `Instant`: fastest local full-mix analysis.
 - `Fast`: percussion-focused local analysis with fallback behavior when needed.
-- `High precision`: stem-assisted deterministic analysis for difficult rhythm
+- `High precision`: stem-assisted analysis for difficult rhythm
   material.
 
-`High precision` requires the optional app-managed Python runtime and stem
-analysis assets. If those assets are not verified, the panel chooses `Fast` by
-default.
+`High precision` requires the optional Python runtime and stem analysis assets.
+If those assets are not verified, the panel chooses `Fast` by default.
 
 ## High precision controls
 
@@ -68,8 +67,8 @@ sections. The workflow proposes boundaries, then asks you to confirm, delete,
 add, or move boundaries on the timeline before final analysis.
 
 Confirmed regions are analyzed independently and merged back into absolute
-video time. This avoids one song's tempo or profile forcing the rest of the
-video into the wrong grid.
+timeline positions. This avoids one song's tempo or profile forcing the rest of
+the video into the wrong grid.
 
 ## Beat, accent, and downbeat markers
 

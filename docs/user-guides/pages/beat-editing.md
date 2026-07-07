@@ -77,9 +77,9 @@ Accent repair commands add timing hints without changing the primary beat
 sequence. Use accent subdivisions or accent fills for rapid decoration moments,
 then clear accents in a span when there are too many.
 
-Beatbar hits do not store accent, downbeat, or measure-start state, so those
-commands are available only on the `Audio` tab. Beatbar fill from selected
-tempo is available when an audio beat grid has an estimated BPM.
+Beatbar hit markers support timing edits only, so accent, downbeat, and
+measure-start commands are available only on the `Audio` tab. Beatbar fill from
+selected tempo is available when an audio beat grid has an estimated BPM.
 
 ## Timing repair
 
