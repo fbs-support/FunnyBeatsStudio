@@ -1,6 +1,6 @@
 # Third-Party Python Wheel Notices for FunnyBeatsStudio
 
-Version: 2026-07-02
+Version: 2026-07-06
 
 This notice lists Python wheels that FunnyBeatsStudio may download into local app-managed storage when you explicitly install optional ML features. These wheels are not bundled with the application archive. Each wheel is governed by its own license terms.
 
@@ -8,12 +8,13 @@ This notice lists Python wheels that FunnyBeatsStudio may download into local ap
 
 - The current HighPrecision package manifest includes `diffq-fixed` under `Creative Commons Attribution-NonCommercial 4.0 International`. Treat the HighPrecision feature as non-commercial-only unless this dependency is removed, replaced, or separately relicensed.
 - The current HighPrecision package manifest includes `soxr` under `LGPL-2.1-or-later`. Preserve LGPL notices and do not restrict users from exercising rights granted by that component license.
+- The current DINOv3 beatbar AI package manifest includes `opencv-python-headless`. The OpenCV project code is Apache-2.0, the opencv-python packaging scripts are MIT, and upstream opencv-python wheels ship FFmpeg under LGPLv2.1.
 - These wheels are third-party components. FunnyBeatsStudio does not own them and does not grant additional rights to them.
 
 ## DINOv3 beatbar AI package wheels
 
 - Package set: `beatbar-dinov3-evaluation-cuda-packages-v1`
-- Revision: `sha256:0f7ad862863743e4969655fc742fbbd9740a3a55b4a550125ad8ca8c79f9028f`
+- Revision: `sha256:2f555a0eac462b84e4a49cc0ae3f8969aee6ed5fcacca61d68ab49cd8a101bcd`
 - Runtime: CPython `3.13.14` embedded for Windows x64
 - Execution provider: `pytorch-cuda-cu128`
 
@@ -31,6 +32,7 @@ This notice lists Python wheels that FunnyBeatsStudio may download into local ap
 | `mpmath` | `1.3.0` | `mpmath-1.3.0-py3-none-any.whl` | BSD | PyPI | `a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c` |
 | `networkx` | `3.6.1` | `networkx-3.6.1-py3-none-any.whl` | BSD-3-Clause | PyPI | `d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762` |
 | `numpy` | `2.4.6` | `numpy-2.4.6-cp313-cp313-win_amd64.whl` | BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0 | PyPI | `c4fc99836233ea196540b17ab0983aff60ed07941751930f5f4d05bc3b3b7359` |
+| `opencv-python-headless` | `5.0.0.93` | `opencv_python_headless-5.0.0.93-cp37-abi3-win_amd64.whl` | Apache-2.0 AND MIT AND LGPL-2.1-only | PyPI | `829717b6a95554f273e49e357cee3b3a2a26b6f4842fbc1bed2b45bdd8f87e0e` |
 | `packaging` | `26.2` | `packaging-26.2-py3-none-any.whl` | Apache-2.0 OR BSD-2-Clause | PyPI | `5fc45236b9446107ff2415ce77c807cee2862cb6fac22b8a73826d0693b0980e` |
 | `pillow` | `12.2.0` | `pillow-12.2.0-cp313-cp313-win_amd64.whl` | MIT-CMU | PyPI | `390ede346628ccc626e5730107cde16c42d3836b89662a115a921f28440e6a3b` |
 | `PyYAML` | `6.0.3` | `pyyaml-6.0.3-cp313-cp313-win_amd64.whl` | MIT | PyPI | `79005a0d97d5ddabfeeea4cf676af11e647e41d81c9a7722a193022accdb6b7c` |

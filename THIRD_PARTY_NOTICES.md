@@ -1,6 +1,6 @@
 # Third-Party Notices for FunnyBeatsStudio
 
-Version: 2026-07-02
+Version: 2026-07-06
 
 This document summarizes third-party software used by or with FunnyBeatsStudio. It is not a substitute for the full license texts supplied by each third-party project.
 
@@ -54,6 +54,7 @@ The current HighPrecision package manifest includes at least these license-sensi
 | Package | License in current manifest | Notice |
 |---|---|---|
 | `diffq-fixed` | Creative Commons Attribution-NonCommercial 4.0 International | The current HighPrecision feature is offered for personal, non-commercial use only while this dependency remains in the package set. |
+| `opencv-python-headless` | Apache-2.0 AND MIT AND LGPL-2.1-only | The current DINOv3 beatbar AI package uses OpenCV's headless Python wheel for worker-side image processing. The upstream wheel includes OpenCV code, opencv-python packaging scripts, FFmpeg under LGPLv2.1, and other third-party binaries; see `THIRD_PARTY_PYTHON_WHEELS.md`. |
 | `soxr` | LGPL-2.1-or-later | The LGPL terms for this component apply. FunnyBeatsStudio's license does not remove rights granted by that component license. |
 
 ## Attribution and source links

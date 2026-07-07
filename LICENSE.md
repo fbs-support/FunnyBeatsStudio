@@ -77,4 +77,5 @@ FunnyBeatsStudio may update this Agreement for future versions. A new version ap
 
 ## 10. Contact
 
-For questions about this Agreement, use the support or contact channel published with your copy of FunnyBeatsStudio.
+For questions about this Agreement, use the FunnyBeatsStudio distribution repository:
+https://github.com/fbs-support/FunnyBeatsStudio
