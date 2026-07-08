@@ -144,9 +144,10 @@ Do not enable audio snap when the beat grid is wrong. Fix the beat grid first.
 
 ## Timeline cue markers
 
-Beatbar cue hits appear in the Beat grid layer. `Mixed` shows them alongside
-audio beats for comparison, and `Beatbar` shows committed hits as editable
-markers. Pending markers are review-only until you apply the full-scan result.
+Beatbar cue hits appear in the Beat grid layer. `Unified` shows the resolved
+timing view with audio and beatbar evidence, and `Beatbar` shows committed hits
+as editable markers. Pending markers are review-only until you apply the
+full-scan result.
 
 To repair committed beatbar hits without rerunning analysis:
 

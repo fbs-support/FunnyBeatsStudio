@@ -12,7 +12,7 @@ Selecting multiple markers changes only the beat selection.
 
 The Beat grid layer has three source tabs:
 
-- `Mixed`: read-only comparison of audio beats and beatbar hits.
+- `Unified`: read-only resolved timing view with audio and beatbar evidence.
 - `Audio`: editable audio beat grid.
 - `Beatbar`: editable committed beatbar hits.
 

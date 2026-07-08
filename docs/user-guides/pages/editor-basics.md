@@ -96,8 +96,8 @@ modifiers, readouts, and speed-violation review.
 Beat markers are edited in the separate Beat grid layer. Use `Edit > Beat
 editing...` or `Ctrl+B` for settings-driven beat repair, and use `B`, `A`, and
 `Delete` for quick beat-grid edits. In the Beat grid layer, use the `Audio` tab
-for audio beats and the `Beatbar` tab for committed beatbar hits; `Mixed` is a
-read-only comparison view.
+for audio beats and the `Beatbar` tab for committed beatbar hits; `Unified` is a
+read-only resolved timing view.
 
 See [Beat editing](./beat-editing.md) for beat, accent, timing, and downbeat
 repair workflows.

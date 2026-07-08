@@ -47,7 +47,7 @@ These shortcuts apply in the points timeline layer.
 
 ## Beat grid editing
 
-These shortcuts apply in the Beat grid timeline layer. `Mixed` is read-only;
+These shortcuts apply in the Beat grid timeline layer. `Unified` is read-only;
 use `Audio` or `Beatbar` for selection and editing.
 
 | Shortcut | Action |
