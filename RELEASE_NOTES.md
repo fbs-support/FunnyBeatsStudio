@@ -22,8 +22,6 @@ Changes since `1.0.0`.
 - Selected-point modifier Humanized random seeds remain reusable during the
   current panel session, but are not saved as last-used settings.
 - Motion generation last-used settings no longer save random seeds.
-- The settings and dependency user guide wording now focuses on end-user
-  workflows and avoids implementation-only details.
 
 ### Notes
 
