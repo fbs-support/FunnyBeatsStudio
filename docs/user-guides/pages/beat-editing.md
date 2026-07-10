@@ -46,6 +46,24 @@ the command is not accent, downbeat, or measure-start specific.
 Beat edits are undoable when they commit a change. Duplicate timestamps and
 other no-op edits report no change instead of creating Undo entries.
 
+## Saved commands
+
+After a supported command in the Beat editing pane changes the source grid,
+use `Register last...` in `Saved commands` to name that operation and its
+effective values. Expand the panel, then click anywhere on a saved row except
+its trash button to run it against the currently selected editable source and
+markers. It does not switch source tabs or copy values into the ordinary
+controls.
+
+Hover a row to review its saved values and current availability. Audio-only
+commands remain disabled on the Beatbar source, frame-step commands require a
+known frame rate, and selected-tempo fill requires an estimated BPM. The number
+in the left drag handle is the row's current shortcut position. Drag that
+numbered handle to reorder rows; the first 30 positions can be invoked from the
+Beat grid timeline with the saved-command shortcuts listed in the Keyboard
+Shortcuts guide. Use the trash button to remove a saved command. Saved commands
+are user-level data and are not included in project or funscript files.
+
 ## Advanced paste
 
 Select beat or accent markers in the Beat grid layer and copy them with

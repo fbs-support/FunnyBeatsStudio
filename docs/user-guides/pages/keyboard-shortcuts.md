@@ -18,6 +18,23 @@ editable text control, normal text editing takes priority.
 | `Ctrl+M` | Open Point modifiers |
 | `Ctrl+B` | Open Beat editing |
 
+## Saved commands
+
+These shortcuts use the current order in `Saved commands`. They apply Point
+modifiers in the points timeline layer and Beat editing commands in the Beat
+grid timeline layer.
+
+| Saved-command position | Shortcut |
+| --- | --- |
+| 1-10 | `Ctrl+Alt+1` through `Ctrl+Alt+9`, then `Ctrl+Alt+0` |
+| 11-20 | `Ctrl+Shift+1` through `Ctrl+Shift+9`, then `Ctrl+Shift+0` |
+| 21-30 | `Ctrl+Alt+Shift+1` through `Ctrl+Alt+Shift+9`, then `Ctrl+Alt+Shift+0` |
+
+Top-row and numeric-keypad digits both work. The ordinal shown in each row's left
+drag handle is its shortcut position. Drag the numbered handle to change that
+position and shortcut. Rows after position 30 keep their ordinals and remain
+clickable but have no number-key shortcut.
+
 ## Playback
 
 | Shortcut | Action |

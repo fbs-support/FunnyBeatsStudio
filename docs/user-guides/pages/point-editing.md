@@ -75,6 +75,29 @@ Each modifier has its own `Apply` button. A successful apply is one undoable
 edit, and the result points remain selected so you can chain another modifier
 intentionally.
 
+### Saved commands
+
+After a modifier changes the timeline, use `Register last...` in the
+`Saved commands` panel at the top of Point modifiers, above `Constraints`, to
+give that exact operation and its effective values a name. Expand the panel,
+then click anywhere on a saved row except its trash button to apply those values
+to the points selected at click time. It does not restore the old selection or
+copy values into the ordinary modifier controls.
+
+Hover a row to review its operation, saved values, current target, and any
+reason it is unavailable. The number in the left drag handle is the row's
+current shortcut position. Drag that numbered handle to reorder rows; the first
+30 positions can be invoked from the points timeline with the saved-command
+shortcuts listed in the Keyboard Shortcuts guide. Use the trash button to remove
+it. Insert Points saved commands require selected anchors and never use the
+playhead-only variant. Saved commands are shared between projects and survive
+app restarts.
+
+For Humanized, a Random seed that was blank when you clicked Apply remains
+automatic in the registered command, so each saved-command invocation chooses a
+new seed. The seed generated for the ordinary Apply is shown in the field after
+that edit. If you entered a seed, including `0`, the registered command reuses it.
+
 When an Advanced paste source starts and ends on the same point position, repeat
 copies share that boundary so peak or bounce loops stay connected.
 

@@ -1,5 +1,34 @@
 # Release Notes
 
+## 1.1.1
+
+Changes since `1.1.0`.
+
+### Added
+
+- Added `Saved commands` to Point modifiers and Beat editing. After applying a
+  supported edit, users can name it and reuse the same values with the current
+  selection in one click.
+- Saved commands are available across projects and app restarts. They can be
+  reordered by dragging, reviewed by hovering, and removed when no longer
+  needed.
+- Added position-based keyboard shortcuts for the first 30 saved commands in
+  each editor. Reordering a command also changes its shortcut position.
+
+### Fixed
+
+- Video replacement exports now include committed beatbar timing alongside
+  audio beats when choosing visual cuts. Beatbar-supported downbeats also keep
+  their downbeat behavior during export.
+- Fixed source clips becoming quieter in 2x2 video replacement segments when
+  the left/right audio balance was applied.
+
+### Notes
+
+- Saved commands store an operation and its values, not the points, beats, or
+  selection it was created from. Each command runs against the current editor
+  context and is not included in project or funscript files.
+
 ## 1.1.0
 
 Changes since `1.0.1`.
