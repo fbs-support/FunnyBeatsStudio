@@ -55,18 +55,24 @@ project file.
 3. For a first pass, use the default profile and sensitivity values.
 4. Run the analysis and wait for the status bar to report completion.
 5. Review the beat markers on the timeline.
+6. If the app opens `Structure` > `Meter boundary`, review the suggested meter
+   and accept it only after the projected measure starts look correct.
 
 Use `Edit > Beat editing...` or `Ctrl+B` when the generated beat grid needs
 manual repair. See [Beat editing](./beat-editing.md) for the dedicated repair
-workflow.
+workflow. Pending meter suggestions do not affect motion generation until they
+are accepted.
 
 ## 5. Generate a motion preview
 
 1. Open `View > Motion generation` or press `Ctrl+3`.
 2. Choose `Single axis` or `Multi axis`.
-3. Select a style, timing source, target axis, and apply mode.
+3. Choose the available style or preset, target or enabled axes, and apply mode.
 4. Click `Generate preview`.
 5. Review the preview overlay in the timeline.
+
+Motion generation automatically uses the current Unified timing grid; there is
+no separate audio-versus-beatbar timing source control.
 
 Preview generation is non-destructive. It shows proposed points before they are
 committed to the editable timeline.

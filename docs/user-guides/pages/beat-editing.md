@@ -20,11 +20,13 @@ Markers have three common meanings:
 
 - `Beat`: primary rhythm markers used for beat order and ordinary snapping.
 - `Accent`: extra timing hints for offbeats, pickups, and fill moments.
-- `Downbeat`: a beat marked as a measure start.
+- `Downbeat`: a compatibility flag projected from a confirmed measure start,
+  or a marker-only value in an older map-free grid.
 
-Downbeats render distinctly on the timeline. Accents do not become downbeats.
-
-![Edit beat timeline](./images/edit-beat-timeline.png)
+Confirmed measure starts are red and confirmed group starts have weaker
+emphasis. Pending meter proposals are reviewed under `Structure` > `Meter
+boundary`; they do not become downbeats until accepted. Accents do not become
+downbeats.
 
 ## Add, select, and delete markers
 
@@ -36,8 +38,10 @@ Use:
 
 Right-click the beat timeline for context commands. With no marker selected,
 the menu offers location-aware add commands. With a marker selection, the menu
-offers selection commands such as delete, toggle beat/accent, toggle downbeat,
-selection filtering, midpoint insertion, and span repair entries.
+offers selection commands such as delete, toggle beat/accent, selection
+filtering, midpoint insertion, and span repair entries. Direct downbeat toggles
+remain available only for older map-free grids; confirmed meter maps are edited
+under `Structure` > `Meter boundary`.
 
 Committed beatbar hits are edited from the `Beatbar` tab. Use `Delete` for
 false positives, or the same beat-repair timing commands used by Audio when
@@ -45,6 +49,11 @@ the command is not accent, downbeat, or measure-start specific.
 
 Beat edits are undoable when they commit a change. Duplicate timestamps and
 other no-op edits report no change instead of creating Undo entries.
+
+The app refuses to delete a confirmed meter anchor or convert it to an Accent.
+Remove or move that meter boundary first. Nudging, shifting, or stretching a
+valid primary beat range also reconciles its meter anchors with the retimed
+grid.
 
 ## Saved commands
 
@@ -63,6 +72,12 @@ numbered handle to reorder rows; the first 30 positions can be invoked from the
 Beat grid timeline with the saved-command shortcuts listed in the Keyboard
 Shortcuts guide. Use the trash button to remove a saved command. Saved commands
 are user-level data and are not included in project or funscript files.
+
+A saved `Set measure start` command keeps its primary pulse count, grouping,
+and optional time signature. Running it applies that definition directly to the
+one selected primary Audio beat; it does not open the Beat editing pane or the
+Meter editor. Older saved versions that contained only a beat count
+reopen as one group of that size with notation left unknown.
 
 ## Advanced paste
 
@@ -116,14 +131,108 @@ Use nudges for small consistent offsets. Use stretch only when the selected
 start and end markers are trustworthy and the interior timing needs retiming
 across that span.
 
-## Meter and downbeats
+## Meter boundary tab
 
-Use `Mark downbeat` and `Clear downbeat` for direct correction of selected
-primary beats.
+Choose the vertical `Structure` timeline layer and then the `Meter boundary`
+top tab for all meter state and detailed meter editing. This tab uses the Audio
+primary beats as a faint background grid; it does not duplicate meter state in
+the Beat editing pane.
 
-Use `Set measure start` when one selected primary beat should become the phase
-reference for the section. The app recalculates downbeats across the primary
-beat sequence using the selected beats-per-measure value.
+A confirmed meter is drawn as a region card from its start to end. The card
+shows its time signature when known, or a description such as
+`4 pulses (2+2), notation unknown`, together with origin, confidence, and pickup
+state when space permits. Red lines mark measure starts, weaker lines mark group
+starts, and ordinary pulses remain neutral. A selected region uses a stronger
+border and hatch treatment.
+
+The start and end edges are full-height resize grips, matching the direct
+manipulation used by the Song regions. The first-complete-measure anchor has a
+compact bottom grip, so it remains selectable when it shares a timestamp with
+the start edge. A region may begin at the song boundary while its anchor occurs
+later; the beats before that anchor are the pickup.
+
+### Review meter proposals
+
+A pending proposal appears as a distinct Suggested card with amber or gray
+styling. Its proposed measure and group lines are projected across the complete
+region as dashed lines. The card shows rank, pulse count, grouping, score, and
+reason; additional algorithm detail is available in the timeline tooltip or
+diagnostics.
+
+Sections with ranked proposals show one Suggested card each. Sections that
+could not produce a proposal remain in diagnostics but leave the editing
+timeline blank for the user to fill. Use the viewport-fixed `Candidate n/N`
+previous and next controls to compare up to three alternatives for the selected
+section. Rejected proposals are skipped. Changing that section's displayed
+alternative is session-only and does not add an Undo entry or alter the project.
+
+Right-click a Suggested card to `Accept`, `Reject`, or `Edit and apply...` it.
+Accepting it unchanged creates a confirmed detected region. Editing it first
+creates a user-authored region instead. A pending proposal never changes
+downbeats or motion generation. After analysis, the app switches to the Meter
+layer only when at least one pending proposal needs review; a result containing
+only confirmed meter stays on the current Beat grid view.
+
+### Add or edit a meter
+
+Double-click an Audio primary beat in a region, or use its context menu, to open
+the Meter editing rail immediately above the timeline. The rail contains:
+
+- primary pulses per measure, from `1` through `32`;
+- a grouping whose positive parts must add to that pulse count, such as `2+2`,
+  `3+3`, `3+2`, or `2+3`; and
+- an optional notated numerator and denominator.
+
+A new definition starts at `4` pulses, grouping `2+2`, with notation unknown.
+Editing a confirmed region or proposal starts with its current values. Applying
+the first definition in a song region begins the region at the song boundary
+and uses the clicked beat as its first complete measure anchor. Applying a later
+definition creates or updates meter from that beat to the next boundary or song
+end.
+
+Right-click a confirmed card for `Edit meter...`, `Add meter change here...`,
+`Set measure start here`, `Remove meter change`, or `Delete meter region`.
+Right-click empty map space for `Set meter here...`; an older map-free grid also
+offers the explicit action that creates a reviewable proposal from stable
+legacy downbeats. Migration uses one group `[N]`, leaves notation unknown, and
+never guesses a time signature on project load.
+
+With keyboard focus on `Meter boundary`, `Enter` edits a confirmed region or
+accepts the selected proposal. `Delete` removes a selected region or internal
+boundary, or rejects the selected proposal. `Escape` cancels the editing rail or
+a drag. `Space` continues to control playback. Results, validation failures,
+and warnings appear in the bottom status bar rather than in an operation pane.
+
+### Move boundaries and anchors
+
+Drag a confirmed region's start edge, end edge, shared boundary, or measure
+anchor. Anchors snap to Audio primary beats. Edges also accept exact song
+endpoints and an adjacent confirmed-region edge, even when that edge is not a
+materialized Beat. The drag preview is a ghost only; the project changes once,
+when the pointer is released. Dropping on the original position is a no-op and
+creates no Undo entry.
+
+An edge may expand or shrink through blank, candidate-free, rejected, or
+Pending space up to the next confirmed region. Overlapped proposals are removed
+by that explicit user edit. A shared internal boundary moves the end of the
+preceding region and the start of the following region together. Analyzer-
+derived pause boundaries do not lock editing. Actual song boundaries cannot be
+crossed, although a region can shrink away from one, and a preserved user region
+that already crosses a newly detected song boundary can be normalized back to
+the anchor's song range.
+
+When separated regions with the same definition meet, the editor combines them
+only when the structural pulse grid proves that their measure phase agrees. If
+phase conflicts or cannot be proved, it leaves an explicit shared boundary;
+removing that boundary is an authoritative user decision and extends the left
+region regardless of the automatic phase judgment. Overlapping regions and
+crossing adjacent anchors remain invalid.
+
+Inside a confirmed region, setting a measure start preserves that region's
+definition and creates an explicit anchor. Removing a meter change removes an
+explicit boundary; a repeated red measure start derived from the region cannot
+be removed independently. Direct marker-only downbeat editing remains only for
+older map-free data.
 
 ## Suggested beat repair workflow
 
@@ -133,7 +242,8 @@ beat sequence using the selected beats-per-measure value.
 4. Add missed beats or accents at the playhead.
 5. Use midpoint, fill, or selected-tempo repair for local gaps.
 6. Nudge or stretch sections only after the marker count looks right.
-7. Correct downbeats before using beat-aware motion generation.
+7. Confirm meter regions and proposal phase before using beat-aware motion
+   generation.
 
 Good beat editing makes point editing faster. When point snapping feels wrong,
 return to the beat grid and repair the timing source first.

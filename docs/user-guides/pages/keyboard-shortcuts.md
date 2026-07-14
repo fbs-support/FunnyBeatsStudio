@@ -78,6 +78,16 @@ use `Audio` or `Beatbar` for selection and editing.
 | `Right` | Select the next marker on Audio or Beatbar |
 | `Ctrl+Right` | Add-select the next marker on Audio or Beatbar |
 
+## Structure editing
+
+These shortcuts apply with keyboard focus on `Structure` > `Meter boundary`.
+
+| Shortcut | Action |
+| --- | --- |
+| `Enter` | Edit the selected confirmed region, or accept the selected proposal |
+| `Delete` | Delete the selected region, remove a selected internal boundary, or reject the selected proposal |
+| `Escape` | Cancel the meter editor or an active boundary/anchor drag |
+
 ## Timeline view
 
 | Shortcut | Action |

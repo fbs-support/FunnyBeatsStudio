@@ -1,9 +1,9 @@
 # Motion Generation
 
-Motion generation creates editable draft `.funscript` points from timing
-sources such as beat analysis or beatbar cue hits. Generated points are drafts:
-review them, apply the useful parts, and edit the committed timeline before
-export.
+Motion generation creates editable draft `.funscript` points from the Unified
+timing grid, which resolves beat analysis and committed beatbar cue evidence.
+Generated points are drafts: review them, apply the useful parts, and edit the
+committed timeline before export.
 
 ![Motion generation preview](./images/motion-generation-preview.png)
 
@@ -16,8 +16,8 @@ Use `View > Motion generation` or press `Ctrl+3`.
 The panel supports:
 
 - `Single axis`: generate one target axis.
-- `Multi axis`: generate coordinated points across several motion and Vibe
-  axes.
+- `Multi axis`: generate coordinated points across motion axes and the single
+  Vibe axis.
 
 The normal sequence is:
 
@@ -30,14 +30,20 @@ The normal sequence is:
 6. Apply the preview if it is useful.
 7. Continue editing committed points manually.
 
-## Timing source
+## Unified timing grid
 
-The timing source decides which markers drive generation. Common choices include
-the analyzed beat grid and beatbar cue hits.
+Generation automatically uses the current Unified timing grid, which resolves
+audio, user/imported, and beatbar evidence into one timestamp-unique source.
+There is no competing audio-versus-beatbar source switch.
 
-Use beat-grid timing for rhythm-following motion. Use beatbar timing when the
-video's visual cue is more important than the audio grid, or when a Cock Hero
-beatbar defines the intended hit moments.
+Confirmed meter regions add bar position, pickup state, and measure/group/pulse
+emphasis to that grid. A pending or rejected meter proposal does not affect a
+preview. When no confirmed region is usable, generation keeps explicit legacy
+downbeat flags. Only map-free user-authored or imported timing can use fallback
+bar settings; analyzed Audio and Unified timing do not invent four-beat bars.
+For the most musical result, review
+the red measure starts and grouping emphasis under `Structure` > `Meter
+boundary` first.
 
 ## Single axis mode
 
@@ -47,8 +53,6 @@ companion motion.
 Important controls:
 
 - `Style`: choose the generation style.
-- `Timing source`: choose beats, accents, beatbar hits, or another available
-  timing source.
 - `Target axis`: choose the axis to populate.
 - `Max speed`: limit generated motion speed.
 - `Min interval (ms)`: avoid overly dense points.
@@ -64,8 +68,7 @@ Use `Multi axis` when you want coordinated motion across several axes.
 Important controls:
 
 - `Preset`: load a starting set of enabled axes and tuning.
-- `Motion axes`: enable or disable companion motion axes.
-- `Vibe axes`: enable or disable Vibe channels.
+- `Motion axes`: enable or disable companion motion axes and Vibe.
 - `Companion strength`: adjust companion movement range and intensity.
 - `Companion activity`: adjust companion gesture frequency.
 - `Apply mode`: choose how generated axes are merged or replaced.
@@ -75,7 +78,6 @@ Preset choices include:
 - `Balanced`
 - `Expressive dance`
 - `Minimal companion`
-- `Vibe reactive`
 
 Start with `Balanced`. Increase companion strength or activity only after the
 baseline is reviewable.
@@ -101,8 +103,9 @@ are not committed until you apply them.
 Changing effective generation inputs clears the current preview. Applying a
 preview commits the points as one undoable editor action and clears the preview.
 
-If every enabled axis produces zero preview points, review the diagnostic text
-and timing source before changing style controls.
+If every enabled axis produces zero preview points, review the status and
+diagnostics and make sure the Unified grid has usable markers before changing
+style controls.
 
 ## Modifier tabs
 
@@ -135,6 +138,7 @@ Supported selected-point actions include:
 - `Insert points`
 - `Insert midpoints`
 - `Alternate positions`
+- `Maximize segment speed`
 - `Curving`
 - `Timing`
 - `Half-time`
@@ -151,9 +155,9 @@ chain another modifier intentionally.
 
 ## Constraints
 
-Use constraints to keep generated helpers practical:
+Use constraints to keep modifier output practical:
 
-- `Maximum helper speed`
+- `Overall speed ceiling`
 - `Minimum interval (ms)`
 - `Minimum travel`
 

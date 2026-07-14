@@ -48,15 +48,21 @@ Selecting exactly one committed script point seeks the editor presentation to
 that point. Selecting multiple points changes the selection without surprise
 seeking.
 
-## Axis tabs
+## Timeline layers and tabs
 
-The timeline can contain multiple script axes. The visible axis tab controls
+The vertical timeline selector has three layers:
+
+- `Points`: edit committed script points on the selected axis tab.
+- `Structure`: review `Song boundary` and `Meter boundary` tabs.
+- `Beat grid`: inspect `Unified` timing and edit the `Audio` or `Beatbar`
+  source tabs.
+
+The Points layer can contain multiple script axes. The visible axis tab controls
 which committed points you are directly editing. Multi-axis generation and
 import can populate several axes in one project.
 
-Common axes include stroke-style motion axes and companion axes such as roll,
-pitch, twist, surge, sway, and vibe-related axes. Not every project needs every
-axis.
+Common axes include Stroke and companion axes such as Roll, Pitch, Twist,
+Surge, Sway, and the single Vibe axis. Not every project needs every axis.
 
 ## Editing points
 
@@ -100,7 +106,8 @@ for audio beats and the `Beatbar` tab for committed beatbar hits; `Unified` is a
 read-only resolved timing view.
 
 See [Beat editing](./beat-editing.md) for beat, accent, timing, and downbeat
-repair workflows.
+repair workflows. Confirmed meter and meter suggestions are reviewed under
+`Structure` > `Meter boundary` rather than in the Beat editing panel.
 
 ## Selection, Undo, and Redo
 

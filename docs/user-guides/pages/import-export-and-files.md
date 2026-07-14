@@ -15,6 +15,8 @@ Project files store editor state such as:
 - the loaded video reference and media information;
 - timeline points;
 - beat analysis and beat edits;
+- confirmed musical meter regions and up to three review proposals per detected
+  meter section;
 - beatbar analysis definitions and results;
 - project-level data needed to reopen the editing session.
 
@@ -28,6 +30,21 @@ Project files do not embed:
 Keep project files next to your working media if that helps organization, but
 do not move or rename the source video without expecting to reselect or reload
 it later.
+
+Current project format version `17` keeps meter regions and review proposals
+separately from detected Beat markers. It also stores a compact structural
+pulse grid, so deleting or retagging a non-anchor Beat does not shift later bar
+phase after reload. Older projects still open with their saved downbeat flags,
+but the app does not guess grouping or a notated time signature from those
+flags. Set a meter region directly, or create and review a proposal from stable
+legacy downbeat spacing, when you want the old grid to gain explicit musical
+structure.
+
+Version `17` supports one vibration axis, shown in the UI as `Vibe` and stored
+internally as `Vibe0`. When an older project contains points on the removed
+`Vibe1`, `Vibe2`, or `Vibe3` axes, those points are discarded during loading and
+are not merged into `Vibe0`. Keep a backup or convert those points before
+opening and saving the project in the current version.
 
 ## Loading videos and sidecar scripts
 
@@ -57,8 +74,9 @@ The app supports community-compatible versions:
 - `1.1`: single-file multi-axis format using an `axes` array.
 - `2.0`: single-file multi-axis format using a `channels` object.
 
-Missing `version` is treated as legacy `1.0`. Unknown versions or unsupported
-axes are rejected instead of silently dropping motion data.
+Missing `version` is treated as legacy `1.0`. Unknown versions are rejected.
+Axes and channels that Funny Beats Studio does not support are ignored while
+the supported motion data continues to import.
 
 ## Export funscript
 
@@ -87,9 +105,6 @@ Version `1.0` writes one `.funscript` file per supported axis:
 | Roll | `<base-name>.roll.funscript` |
 | Pitch | `<base-name>.pitch.funscript` |
 | Vibe0 | `<base-name>.vib0.funscript` |
-| Vibe1 | `<base-name>.vib1.funscript` |
-| Vibe2 | `<base-name>.vib2.funscript` |
-| Vibe3 | `<base-name>.vib3.funscript` |
 
 Axes with no points are still exported as valid files with an empty `actions`
 array.
@@ -106,7 +121,8 @@ In both formats:
 - axes with no points are exported with empty action arrays.
 
 Version `1.1` uses TCode-style axis IDs such as `R1`. Version `2.0` uses channel
-names such as `roll` and `vib1`.
+names such as `roll` and `vib1`. The single Vibe axis uses `.vib0` in version
+`1.0` sidecar file names, `V0` in version `1.1`, and `vib1` in version `2.0`.
 
 ## Video replacement export
 

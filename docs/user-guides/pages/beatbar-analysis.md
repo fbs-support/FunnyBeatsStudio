@@ -64,7 +64,7 @@ Use Cue (AI) when a visible marker or cue event is the clearest timing signal.
 4. Click `Preview`.
 5. Adjust the selected Cue preset, `Min interval ms`, confidence threshold, or
    `Timing offset ms` if preview hits are too dense, missing, or consistently
-   early/late.
+   early/late, then click `Preview` again.
 6. Use `Recommend settings` when available, then review the pending full-scan
    result before applying it.
 
@@ -78,7 +78,8 @@ enters a visible hit state and you do not need the optional AI assets.
 1. Set the beatbar and target regions.
 2. Capture at least a few clear hit and non-hit examples.
 3. Click `Preview`.
-4. Adjust `Detection`, `Release`, `Min interval ms`, and `Timing offset ms`.
+4. Adjust `Detection`, `Release`, `Min interval ms`, and `Timing offset ms`, then
+   click `Preview` again.
 5. Run `Analyze full video` once preview hits look reasonable.
 
 If detection chatters, raise `Min interval ms` or adjust threshold values. If it
@@ -110,6 +111,11 @@ Preview lets you check a bounded section quickly. Full scan processes the video
 and stages a pending result after success. If a full scan is canceled or fails,
 the previous valid result is preserved.
 
+Changing an accuracy or post-processing setting clears the displayed preview.
+It does not rerun preview automatically. Click `Preview` when you are ready to
+check the new values; the app may reuse retained scoring output when the media
+and calibration still match.
+
 Review the pending cue markers on the timeline before applying them. Pending
 markers use a different color from committed markers. Use `Minimum confidence`
 to hide lower-confidence final hits from the pending result; changing this
@@ -124,30 +130,17 @@ Use:
 Only applied beatbar cue hits are available as a motion-generation timing
 source.
 
-## Audio snap
-
-Audio snap can align visual cue hits to the existing beat grid.
-
-Use it when:
-
-- you already ran beat analysis;
-- visual hits are close to musical beats;
-- small visual-timing offsets make generation feel late or early.
-
-The main controls are:
-
-- `Apply audio snap during full scan`;
-- `Snap max ms`;
-- marker policy such as beats-only or beats-and-accents.
-
-Do not enable audio snap when the beat grid is wrong. Fix the beat grid first.
-
 ## Timeline cue markers
 
 Beatbar cue hits appear in the Beat grid layer. `Unified` shows the resolved
 timing view with audio and beatbar evidence, and `Beatbar` shows committed hits
 as editable markers. Pending markers are review-only until you apply the
 full-scan result.
+
+When reliable audio timing is nearby, the Unified view automatically resolves
+the audio and visual evidence into one marker. The Beatbar source remains at its
+visual timestamp, so changing audio analysis does not rewrite committed beatbar
+hits.
 
 To repair committed beatbar hits without rerunning analysis:
 
@@ -166,5 +159,5 @@ Accent, downbeat, and measure-start commands are Audio-only.
 - Preview hits align with obvious visual cue events.
 - Extra repeated decorations are not being detected as hits.
 - Timing offset is corrected before full scan.
-- Audio snap is used only with a trustworthy beat grid.
+- The Unified view aligns nearby audio and beatbar evidence as expected.
 - AI sample labels are clean and not accidentally reversed.

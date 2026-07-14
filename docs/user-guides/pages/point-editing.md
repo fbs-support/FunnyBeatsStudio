@@ -67,9 +67,18 @@ Useful modifier groups:
 - `Advanced paste`: paste copied points at the current timestamp with backward,
   mirrored-backward, overwrite, and repeat controls.
 - `Insert points` and `Insert midpoints`: add helper points.
-- `Alternate positions`, `Curving`, and `Timing`: reshape selected motion.
+- `Alternate positions`, `Maximize segment speed`, `Curving`, and `Timing`:
+  reshape selected motion. Maximize segment speed needs two points on one axis,
+  preserves timestamps and each original rise/fall direction, and uses the
+  smaller of its own ceiling and the overall speed ceiling.
 - `Half-time`, `Double-time`, `Groove`, `Build Up`, `Tremolo`,
   `Hard Beat Bouncing`, and `Humanized`: apply rhythm-style decorations.
+
+`Maximize segment speed` evaluates the timestamp-ordered selected points on
+each axis, even when unselected points lie between them. Unselected points stay
+unchanged; connections from changed points to those unselected points are not
+checked against either speed ceiling. Equal-position runs alternate direction:
+positions `0..50` start upward, while positions `51..100` start downward.
 
 Each modifier has its own `Apply` button. A successful apply is one undoable
 edit, and the result points remain selected so you can chain another modifier

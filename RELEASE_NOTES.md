@@ -1,5 +1,69 @@
 # Release Notes
 
+## 1.2.0
+
+Changes since `1.1.1`.
+
+### Added
+
+- Added a `Structure` timeline layer with `Song boundary` and `Meter boundary`
+  tabs. The Meter boundary tab shows confirmed meter regions and reviewable
+  suggestions directly against the audio pulse grid.
+- Added timeline tools for comparing up to three meter candidates per detected
+  section, accepting or rejecting a suggestion, editing pulse grouping and an
+  optional time signature, and moving region edges or the first complete
+  measure anchor. Committed meter edits are undoable.
+- Added `Maximize segment speed` to Point modifiers. It preserves each selected
+  segment's timestamps and original rise or fall direction while maximizing
+  travel within both its own speed ceiling and the overall speed ceiling.
+
+### Changed
+
+- `Instant`, `Fast`, and `High precision` analysis now evaluate musical meter
+  and phase from the available rhythm evidence instead of marking every fourth
+  beat by default. Ambiguous results remain suggestions and do not affect
+  generation until they are accepted.
+- Meter structure is now kept separately from editable Beat markers. A compact
+  structural pulse grid preserves bar phase when a non-anchor Beat is deleted,
+  changed to an Accent, inferred, or hidden by a display filter.
+- Improved meter and downbeat analysis for syncopated material, sparse or
+  interrupted pulse grids, variable meter, and multi-song videos. Adaptive
+  analysis also uses grid quality to avoid unsuitable half- or double-time
+  choices.
+- Removed Beatbar audio snap. The `Unified` timing view now resolves nearby
+  audio and visual evidence automatically while committed Beatbar hits retain
+  their native visual timestamps. Changing an accuracy or post-processing
+  setting clears the old preview; click `Preview` to check the new values.
+- Consolidated vibration output on one UI axis named `Vibe` (`Vibe0`
+  internally). The separate Vibe axes and the `Vibe reactive` preset have been
+  removed, and the remaining presets use the single Vibe axis.
+- Saved `Set measure start` commands now retain the primary pulse count,
+  grouping, and optional time signature. Older saved commands reopen as one
+  group of the stored size with notation left unknown.
+
+### Fixed
+
+- Fixed meter proposal, boundary, and anchor presentation so controls remain
+  usable near shared edges and while the timeline is scrolled.
+- Fixed meter-region edits across gaps so valid structural pulse ordinals,
+  measure phase, and variable-meter sections are preserved.
+- Fixed `Maximize segment speed` changing the intended direction of selected
+  segments.
+
+### Notes
+
+- Projects saved by `1.2.0` use project format version `17` and are intended for
+  `1.2.0` or later. Keep a copy before saving if you need to return to an older
+  release.
+- Older projects still open, but points on the removed `Vibe1`, `Vibe2`, and
+  `Vibe3` axes are discarded and are not merged into `Vibe0`. Convert or back up
+  those points before opening and saving the project in `1.2.0`.
+- The single Vibe axis continues to use `.vib0` for version `1.0` sidecar files,
+  `V0` for version `1.1` axis IDs, and `vib1` for version `2.0` channel names.
+- Older projects do not gain explicit meter structure automatically. Rerun beat
+  analysis, set meter regions manually, or create and review a proposal from
+  stable legacy downbeats when needed.
+
 ## 1.1.1
 
 Changes since `1.1.0`.

@@ -83,8 +83,9 @@ Check the calibration before changing many thresholds:
 - hit and non-hit samples should be correctly labeled;
 - timing offset should be adjusted if all hits are consistently early or late.
 
-Use `Preview` before `Analyze full video`. If audio snap is enabled, make sure
-the beat grid is already trustworthy.
+Use `Preview` before `Analyze full video`. Changing an accuracy or
+post-processing setting clears the displayed preview without rerunning it;
+click `Preview` again when you are ready to check the new values.
 
 ## Beatbar AI says the model is not ready
 
@@ -103,11 +104,14 @@ region.
 Check that:
 
 - a video is loaded;
-- the chosen timing source has usable markers;
+- the Unified timing grid has usable audio, user/imported, or committed beatbar
+  markers;
 - the target axis or enabled axes are selected correctly;
 - `Min interval (ms)` is not too high;
 - constraints are not rejecting all candidates;
-- beatbar timing is available if selected as the timing source.
+- expected beatbar hits have been applied rather than left as a pending scan;
+- a meter suggestion has been accepted if you expect it to drive measure
+  emphasis.
 
 Try a simpler single-axis preview from the beat grid before multi-axis
 generation. If that works, reintroduce companion axes and modifiers gradually.
