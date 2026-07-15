@@ -55,8 +55,10 @@ project file.
 3. For a first pass, use the default profile and sensitivity values.
 4. Run the analysis and wait for the status bar to report completion.
 5. Review the beat markers on the timeline.
-6. If the app opens `Structure` > `Meter boundary`, review the suggested meter
-   and accept it only after the projected measure starts look correct.
+6. If the app opens `Structure` > `Meter boundary`, review each suggested meter
+   and accept it only after the projected measure starts look correct. A blank
+   section means no candidate could be produced; set its meter manually if you
+   want generation to use meter information there.
 
 Use `Edit > Beat editing...` or `Ctrl+B` when the generated beat grid needs
 manual repair. See [Beat editing](./beat-editing.md) for the dedicated repair

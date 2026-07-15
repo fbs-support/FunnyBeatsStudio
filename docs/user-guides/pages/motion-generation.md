@@ -126,6 +126,26 @@ you want additional timing or motion behavior, such as:
 Modifiers can make drafts busier. Increase them gradually and review the
 timeline after each preview.
 
+### Tremolo controls
+
+The normal `Tremolo burst` section detects dense timing-event groups. Use:
+
+- `Minimum events` and `Window (ms)` to control which groups qualify;
+- `Interval (ms)` to request the spacing between generated tremolo points;
+- `Amplitude` to control the requested oscillation size; and
+- `Include beats` when ordinary beat markers should count toward a group.
+
+The overall `Min interval (ms)` remains a hard lower limit on point spacing.
+Nearby anchors, the maximum speed, and minimum travel can also reduce or omit
+individual tremolo pairs when the requested motion cannot fit safely.
+
+When `Fill uses tremolo` is enabled under `Call and response`, its `Tremolo
+interval (ms)` and `Tremolo amplitude` controls apply only to that phrase-turn
+fill. They are independent of every normal Tremolo burst setting, so a fill can
+use tremolo even when normal bursts are disabled. Both paths start at `50 ms`
+and amplitude `12`, and the app remembers their values independently after a
+preview is generated.
+
 ## Selected-point modifiers
 
 Use `Edit > Point modifiers...` or `Ctrl+M` after selecting committed timeline

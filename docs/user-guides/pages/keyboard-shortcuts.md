@@ -95,3 +95,6 @@ These shortcuts apply with keyboard focus on `Structure` > `Meter boundary`.
 | `Ctrl++` | Zoom in |
 | `Ctrl+-` | Zoom out |
 | `Ctrl+0` | Reset zoom |
+
+These shortcuts keep the current playhead timestamp at the fixed timeline
+center.

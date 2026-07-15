@@ -37,6 +37,9 @@ Playback, the current timestamp display, the timeline playhead, and visible
 timeline center stay synchronized. The playhead is fixed near the center of the
 timeline pane while the content scrolls underneath it.
 
+Zoom buttons and shortcuts keep the playhead timestamp fixed. Mouse-wheel zoom
+keeps the timestamp under the pointer in place while the scale changes.
+
 Useful playback controls:
 
 - `[` decreases playback speed by `0.25x`.
@@ -113,7 +116,9 @@ repair workflows. Confirmed meter and meter suggestions are reviewed under
 
 Point edits are undoable editor actions. Commands that plan multiple changes,
 such as midpoint insertion or modifier application, commit as one undo entry
-when possible. No-op commands should not create undo entries.
+when possible. No-op commands should not create undo entries. Undo and Redo
+preserve the current zoom and move the playhead to the first timestamp affected
+by the restored edit.
 
 Use:
 

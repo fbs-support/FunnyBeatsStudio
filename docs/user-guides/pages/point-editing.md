@@ -45,6 +45,8 @@ Right-click the timeline for location-aware point commands:
 
 All committed point edits are undoable. No-op commands, such as adding a point
 where one already exists, report no change instead of creating an Undo entry.
+Undo and Redo preserve the current timeline zoom and move the playhead to the
+earliest timestamp changed by the restored edit.
 
 ## Snap and align
 

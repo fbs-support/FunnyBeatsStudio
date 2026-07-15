@@ -169,9 +169,12 @@ alternative is session-only and does not add an Undo entry or alter the project.
 Right-click a Suggested card to `Accept`, `Reject`, or `Edit and apply...` it.
 Accepting it unchanged creates a confirmed detected region. Editing it first
 creates a user-authored region instead. A pending proposal never changes
-downbeats or motion generation. After analysis, the app switches to the Meter
-layer only when at least one pending proposal needs review; a result containing
-only confirmed meter stays on the current Beat grid view.
+downbeats or motion generation. After audio analysis, the app switches to
+`Structure` > `Meter boundary` whenever any section still needs meter review,
+including a section with no candidate card. Use `Set meter here...` or
+double-click an Audio primary beat to define meter manually for a blank section.
+When every section already has applied meter, the app switches to `Beat grid` >
+`Audio`. Simple beat generation also switches to `Beat grid` > `Audio`.
 
 ### Add or edit a meter
 

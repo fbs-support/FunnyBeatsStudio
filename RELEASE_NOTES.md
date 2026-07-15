@@ -1,5 +1,37 @@
 # Release Notes
 
+## 1.2.1
+
+Changes since `1.2.0`.
+
+### Added
+
+- Added separate interval and amplitude controls for normal `Tremolo burst`
+  motion and `Call and response` fill tremolo. Each set of last-used values is
+  remembered independently between app launches.
+
+### Fixed
+
+- Fixed timeline zoom so buttons and keyboard shortcuts keep the current
+  playhead timestamp centered, mouse-wheel zoom keeps the timestamp under the
+  pointer in place, and rapid zoom input cannot restore an older view.
+- Fixed point dragging to commit the final pointer-release position, including
+  exact positions `0` and `100` when no final pointer-move event is delivered.
+- Fixed Undo and Redo after timeline edits so they preserve the current zoom and
+  move the playhead to the earliest timestamp changed by the restored edit.
+- Fixed audio analysis navigation so `Structure` > `Meter boundary` opens
+  whenever a section still needs meter review, including sections where no
+  suggested meter card could be produced.
+- Fixed normal tremolo bursts so they avoid incomplete alternating motion near
+  position limits, use the configured interval and amplitude, and still respect
+  nearby anchors, speed, spacing, and minimum-travel constraints.
+- Fixed `Call and response` fill tremolo so it uses its own controls
+  independently of normal tremolo detection and produces a clear fill toward
+  the next phrase instead of flattened or misdirected motion.
+- Fixed `Drop lock` preparation and bounce planning around nearby points and
+  offset bounces. Valid preparation and landing points are retained while the
+  bounce is reduced to the largest complete pattern that fits the constraints.
+
 ## 1.2.0
 
 Changes since `1.1.1`.

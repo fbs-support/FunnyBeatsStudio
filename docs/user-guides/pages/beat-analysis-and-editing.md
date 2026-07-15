@@ -109,9 +109,11 @@ analysis. It works on the beat-grid layer, not on script point axes. See
 
 Meter regions, proposals, confidence, reasons, boundaries, and anchors are not
 shown in that panel. Choose the vertical `Structure` layer and then the `Meter
-boundary` tab to review or edit them. When analysis produces pending proposals,
-the app opens that tab for review; confirmed-only results leave the current Beat
-grid view unchanged.
+boundary` tab to review or edit them. After audio analysis, the app opens that
+tab whenever any section still needs meter review, including a section for which
+no suggested meter could be produced. When every section already has applied
+meter, it opens `Beat grid` > `Audio`. Simple beat generation always opens
+`Beat grid` > `Audio`.
 
 ## Common beat edits
 
