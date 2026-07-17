@@ -32,13 +32,16 @@ do not move or rename the source video without expecting to reselect or reload
 it later.
 
 Current project format version `17` keeps meter regions and review proposals
-separately from detected Beat markers. It also stores a compact structural
-pulse grid, so deleting or retagging a non-anchor Beat does not shift later bar
-phase after reload. Older projects still open with their saved downbeat flags,
-but the app does not guess grouping or a notated time signature from those
-flags. Set a meter region directly, or create and review a proposal from stable
-legacy downbeat spacing, when you want the old grid to gain explicit musical
-structure.
+separately from Beat and Accent markers and stores a compact structural pulse
+grid. Adding an Audio Beat can create or repair a pulse slot, while moving or
+deleting a Beat updates any corresponding slot. `Toggle Beat/Accent` leaves the
+grid unchanged. Confirmed meter definitions and explicit anchors remain saved
+even when the marker at the same timestamp is changed with `Toggle Beat/Accent`
+or deleted. Older projects still open with their saved downbeat flags, but the
+app does not guess grouping or a notated time signature from those flags. Set a
+meter region directly when you need an explicit meter overlay. Rerun analysis,
+or use the explicit legacy proposal workflow, when the old data also needs
+structural pulse evidence.
 
 Version `17` supports one vibration axis, shown in the UI as `Vibe` and stored
 internally as `Vibe0`. When an older project contains points on the removed

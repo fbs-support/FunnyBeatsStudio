@@ -37,11 +37,13 @@ audio, user/imported, and beatbar evidence into one timestamp-unique source.
 There is no competing audio-versus-beatbar source switch.
 
 Confirmed meter regions add bar position, pickup state, and measure/group/pulse
-emphasis to that grid. A pending or rejected meter proposal does not affect a
-preview. When no confirmed region is usable, generation keeps explicit legacy
-downbeat flags. Only map-free user-authored or imported timing can use fallback
-bar settings; analyzed Audio and Unified timing do not invent four-beat bars.
-For the most musical result, review
+emphasis wherever they resolve against structural pulse evidence. A valid manual
+region can remain partially unresolved; beat-aware emphasis is unavailable in
+that part until Beat timing is repaired or audio analysis is rerun. A pending or
+rejected meter proposal does not affect a preview. When no confirmed region is
+usable, generation keeps explicit legacy downbeat flags. Only map-free user-
+authored or imported timing can use fallback bar settings; analyzed Audio and
+Unified timing do not invent four-beat bars. For the most musical result, review
 the red measure starts and grouping emphasis under `Structure` > `Meter
 boundary` first.
 

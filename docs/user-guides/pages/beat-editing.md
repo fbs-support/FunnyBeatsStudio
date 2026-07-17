@@ -47,11 +47,18 @@ Committed beatbar hits are edited from the `Beatbar` tab. Use `Delete` for
 false positives, or the same beat-repair timing commands used by Audio when
 the command is not accent, downbeat, or measure-start specific.
 
-Beat edits are undoable when they commit a change. Duplicate timestamps and
-other no-op edits report no change instead of creating Undo entries.
+Beat edits are undoable when they commit a change. Commands that make no project
+change report no change instead of creating Undo entries.
 
-The app refuses to delete a confirmed meter anchor or convert it to an Accent.
-Remove or move that meter boundary first. Nudging, shifting, or stretching a
+On the Audio grid, Beat timing edits reconcile the structural pulse grid. Adding
+a Beat can create or repair a pulse slot; at an exact Accent it promotes that
+marker. Retiming or deleting a Beat retimes or removes any corresponding slot.
+`Toggle Beat/Accent` changes only the marker classification.
+
+A confirmed meter anchor does not lock the marker displayed at that timestamp.
+Using `Toggle Beat/Accent` to convert the marker leaves the saved meter region
+and any existing structural pulse slot in place. Deleting a Beat removes any
+corresponding slot but keeps the saved region and explicit anchor. Retiming a
 valid primary beat range also reconciles its meter anchors with the retimed
 grid.
 
@@ -75,8 +82,8 @@ are user-level data and are not included in project or funscript files.
 
 A saved `Set measure start` command keeps its primary pulse count, grouping,
 and optional time signature. Running it applies that definition directly to the
-one selected primary Audio beat; it does not open the Beat editing pane or the
-Meter editor. Older saved versions that contained only a beat count
+one selected Audio beat or accent marker; it does not open the Beat editing pane
+or the Meter editor. Older saved versions that contained only a beat count
 reopen as one group of that size with notation left unknown.
 
 ## Advanced paste
@@ -169,17 +176,20 @@ alternative is session-only and does not add an Undo entry or alter the project.
 Right-click a Suggested card to `Accept`, `Reject`, or `Edit and apply...` it.
 Accepting it unchanged creates a confirmed detected region. Editing it first
 creates a user-authored region instead. A pending proposal never changes
-downbeats or motion generation. After audio analysis, the app switches to
-`Structure` > `Meter boundary` whenever any section still needs meter review,
-including a section with no candidate card. Use `Set meter here...` or
-double-click an Audio primary beat to define meter manually for a blank section.
-When every section already has applied meter, the app switches to `Beat grid` >
-`Audio`. Simple beat generation also switches to `Beat grid` > `Audio`.
+downbeats or motion generation. If `Accept` reports that the proposal no longer
+has a complete structural pulse grid, rerun Audio analysis before accepting it
+unchanged. After audio analysis, the app switches to `Structure` > `Meter
+boundary` whenever any section still needs meter review, including a section
+with no candidate card. Use `Set meter here...` or double-click a valid Audio
+timeline position to define meter manually for a blank section. When every
+section already has applied meter, the app switches to `Beat grid` > `Audio`.
+Simple beat generation also switches to `Beat grid` > `Audio`.
 
 ### Add or edit a meter
 
-Double-click an Audio primary beat in a region, or use its context menu, to open
-the Meter editing rail immediately above the timeline. The rail contains:
+Double-click a valid Audio timeline position in a region, or use its context
+menu, to open the Meter editing rail immediately above the timeline. The rail
+contains:
 
 - primary pulses per measure, from `1` through `32`;
 - a grouping whose positive parts must add to that pulse count, such as `2+2`,
@@ -189,9 +199,9 @@ the Meter editing rail immediately above the timeline. The rail contains:
 A new definition starts at `4` pulses, grouping `2+2`, with notation unknown.
 Editing a confirmed region or proposal starts with its current values. Applying
 the first definition in a song region begins the region at the song boundary
-and uses the clicked beat as its first complete measure anchor. Applying a later
-definition creates or updates meter from that beat to the next boundary or song
-end.
+and uses the resolved timeline position as its first complete measure anchor.
+Applying a later definition creates or updates meter from that position to the
+next boundary or song end.
 
 Right-click a confirmed card for `Edit meter...`, `Add meter change here...`,
 `Set measure start here`, `Remove meter change`, or `Delete meter region`.
@@ -199,6 +209,10 @@ Right-click empty map space for `Set meter here...`; an older map-free grid also
 offers the explicit action that creates a reviewable proposal from stable
 legacy downbeats. Migration uses one group `[N]`, leaves notation unknown, and
 never guesses a time signature on project load.
+
+`Delete meter region` removes that meter overlay and its derived downbeat
+display, but keeps the stored structural pulse evidence available for a later
+meter definition.
 
 With keyboard focus on `Meter boundary`, `Enter` edits a confirmed region or
 accepts the selected proposal. `Delete` removes a selected region or internal
@@ -209,11 +223,13 @@ and warnings appear in the bottom status bar rather than in an operation pane.
 ### Move boundaries and anchors
 
 Drag a confirmed region's start edge, end edge, shared boundary, or measure
-anchor. Anchors snap to Audio primary beats. Edges also accept exact song
-endpoints and an adjacent confirmed-region edge, even when that edge is not a
-materialized Beat. The drag preview is a ghost only; the project changes once,
-when the pointer is released. Dropping on the original position is a no-op and
-creates no Undo entry.
+anchor. Meter handles snap to saved pulse slots, resolvable logical pulse
+positions, and Audio markers without requiring those markers to be classified
+as Beat. When no timing candidate exists in the editable range, the requested
+Audio timestamp is accepted directly. Edges also accept exact song endpoints
+and an adjacent confirmed-region edge. The drag preview is a ghost only; the
+project changes once, when the pointer is released. Dropping on the original
+position is a no-op and creates no Undo entry.
 
 An edge may expand or shrink through blank, candidate-free, rejected, or
 Pending space up to the next confirmed region. Overlapped proposals are removed
@@ -223,6 +239,13 @@ derived pause boundaries do not lock editing. Actual song boundaries cannot be
 crossed, although a region can shrink away from one, and a preserved user region
 that already crosses a newly detected song boundary can be normalized back to
 the anchor's song range.
+
+Incomplete or ambiguous analysis does not reject an otherwise valid manual
+meter edit. The region change and its Undo entry are saved, the existing pulse
+evidence in that unresolved range is left untouched, and other regions can
+still resolve normally. Until the grid is repaired or reanalyzed, repeated
+measure lines and beat-aware generation may remain unavailable in that
+unresolved part.
 
 When separated regions with the same definition meet, the editor combines them
 only when the structural pulse grid proves that their measure phase agrees. If
@@ -235,7 +258,11 @@ Inside a confirmed region, setting a measure start preserves that region's
 definition and creates an explicit anchor. Removing a meter change removes an
 explicit boundary; a repeated red measure start derived from the region cannot
 be removed independently. Direct marker-only downbeat editing remains only for
-older map-free data.
+older map-free data. The explicit anchor does not lock the marker at that time:
+`Toggle Beat/Accent` leaves any existing structural pulse slot unchanged.
+Deleting a Beat removes any corresponding slot but keeps the meter region's
+saved anchor. Add a Beat at the anchor later if you want to restore a missing
+slot.
 
 ## Suggested beat repair workflow
 

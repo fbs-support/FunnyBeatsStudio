@@ -1,5 +1,54 @@
 # Release Notes
 
+## 1.2.2
+
+Changes since `1.2.1`.
+
+### Changed
+
+- Improved responsiveness on long or marker-dense timelines, including point
+  and beat selection, rectangle selection, dragging, meter-handle previews,
+  zooming, and switching timeline layers or tabs.
+- Improved pulse, meter, and downbeat analysis for syncopated material, gaps,
+  and half- or double-time ambiguity. Preliminary Beat and Accent labels no
+  longer pull the structural pulse phase toward the wrong rhythm layer, and
+  genuinely ambiguous sections remain Pending or unresolved instead of forcing
+  a confirmed meter.
+- Audio Beat timing edits now reconcile the structural pulse grid. Adding a Beat
+  can create or repair a pulse slot, while moving or deleting a Beat retimes or
+  removes any corresponding slot. `Toggle Beat/Accent` changes only the marker
+  classification.
+- Expanded timeline zoom to support visible windows from `1` through `300`
+  seconds. Reset still returns to the default `20`-second view.
+
+### Fixed
+
+- Fixed valid manual meter edits being rejected or losing usable phase when
+  analysis is incomplete. Within the current song region, edges can move through
+  blank, rejected, Pending, or analyzer-derived pause areas up to the next
+  confirmed region without inventing missing pulses. Repeated measure lines and
+  beat-aware generation may remain unavailable where structural timing is
+  unresolved.
+- Fixed meter edits changing or deleting the underlying structural pulse
+  evidence. Meter definitions, boundaries, and anchors now act as an overlay,
+  so deleting a meter region keeps the analyzed pulse grid available for later
+  meter definitions.
+- Fixed meter commands requiring the marker at a meter position to be a Beat.
+  Meter handles can use saved or resolved pulse positions, Beat or Accent
+  markers, and a valid position on the Audio timeline when no timing candidate
+  exists. Confirmed meter anchors also remain saved when the marker at that
+  timestamp is changed with `Toggle Beat/Accent` or deleted.
+- Fixed adjacent meter regions with matching definitions being combined when
+  their structural phase conflicts or cannot be proved. The explicit boundary
+  now remains until the user removes it.
+- Fixed mouse-wheel timeline zoom also scrolling the timeline horizontally.
+
+### Notes
+
+- Project files continue to use format version `17`.
+- A Pending meter proposal saved by an older analysis may require rerunning
+  audio analysis before it can be accepted unchanged.
+
 ## 1.2.1
 
 Changes since `1.2.0`.

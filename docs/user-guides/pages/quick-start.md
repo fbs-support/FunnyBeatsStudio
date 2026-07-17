@@ -57,8 +57,9 @@ project file.
 5. Review the beat markers on the timeline.
 6. If the app opens `Structure` > `Meter boundary`, review each suggested meter
    and accept it only after the projected measure starts look correct. A blank
-   section means no candidate could be produced; set its meter manually if you
-   want generation to use meter information there.
+   section means no candidate could be produced. You can set its meter manually,
+   but confirm that measure starts are projected; repair the Beat timing or rerun
+   analysis if the region remains unresolved.
 
 Use `Edit > Beat editing...` or `Ctrl+B` when the generated beat grid needs
 manual repair. See [Beat editing](./beat-editing.md) for the dedicated repair

@@ -37,8 +37,11 @@ Playback, the current timestamp display, the timeline playhead, and visible
 timeline center stay synchronized. The playhead is fixed near the center of the
 timeline pane while the content scrolls underneath it.
 
-Zoom buttons and shortcuts keep the playhead timestamp fixed. Mouse-wheel zoom
-keeps the timestamp under the pointer in place while the scale changes.
+Timeline zoom starts with a `20`-second visible window and supports windows from
+`1` through `300` seconds. Zoom buttons and shortcuts keep the playhead timestamp
+fixed. Mouse-wheel zoom keeps the timestamp under the pointer in place while the
+scale changes and does not also scroll the timeline horizontally. Reset zoom
+returns to the `20`-second view.
 
 Useful playback controls:
 

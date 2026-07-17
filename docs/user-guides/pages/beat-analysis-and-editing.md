@@ -85,9 +85,11 @@ the video into the wrong grid.
 ## Beat, accent, and downbeat markers
 
 `Beat` markers are materialized musical events for snapping and editing. A
-separate structural pulse grid preserves meter and generation position even
-when a non-anchor Beat marker is deleted, changed to an Accent, inferred, or
-hidden by a display filter.
+separate structural pulse grid stores the pulse timing and ordinals used to
+resolve meter and generation positions. Adding an Audio Beat can create or
+repair a structural pulse slot, while moving or deleting a Beat retimes or
+removes any corresponding slot. `Toggle Beat/Accent` changes only the marker
+classification, and display filters do not alter stored pulse timing.
 
 `Accent` markers are extra timing hints. Use them for offbeats, pickup notes,
 rapid decoration, and fill moments that should help editing or generation
@@ -149,19 +151,28 @@ card to accept, reject, or edit and apply it. The card includes rank, pulse
 count, grouping, score, and reason. Switching alternatives is session-only;
 accepting or rejecting is an undoable project change.
 
-Double-click a primary beat, or use a region context menu, to open the inline
-Meter editing rail above the timeline. Set pulse count, a grouping whose parts add to that count, and an
-optional time signature. The new-definition default is `4` pulses grouped
-`2+2`, with notation unknown. Use the same timeline menu to add or remove a
-meter change or set the current measure start.
+Double-click a valid Audio timeline position, or use a region context menu, to
+open the inline Meter editing rail above the timeline. Set pulse count, a
+grouping whose parts add to that count, and an optional time signature. The
+new-definition default is `4` pulses grouped `2+2`, with notation unknown. Use
+the same timeline menu to add or remove a meter change or set the current
+measure start.
 
-Drag a region edge or anchor grip to resize or rephase confirmed meter. Anchors
-snap to Audio primary beats. Edges also accept exact song endpoints and an
-adjacent confirmed-region edge, even when that edge has no materialized Beat.
-The preview does not mutate the project; release commits one Undo entry. Actual
-song boundaries cannot be crossed, but analyzer-derived pause boundaries do not
-lock editing. Invalid overlaps and crossing adjacent anchors are rejected.
-Operation results and warnings appear in the bottom status bar.
+Drag a region edge or anchor grip to resize or rephase confirmed meter. Meter
+handles snap to saved pulse slots, resolvable logical pulse positions, and Audio
+Beat or Accent markers. When no timing candidate exists, a valid explicit Audio
+timestamp is accepted. Edges also accept exact song endpoints and an adjacent
+confirmed-region edge. The preview does not mutate the project; release commits
+one Undo entry. Actual song boundaries cannot be crossed, but analyzer-derived
+pause boundaries do not lock editing. Invalid overlaps and crossing adjacent
+anchors are rejected. Operation results and warnings appear in the bottom
+status bar.
+
+Incomplete or ambiguous analysis does not veto an otherwise valid manual meter
+edit. The region and Undo entry are kept without inventing pulse positions, and
+other independently resolvable regions are not blocked. Repeated measure lines
+or beat-aware generation may stay unavailable in an unresolved part until the
+grid is repaired or reanalyzed.
 
 For older map-free data, the empty `Meter boundary` menu can create a Pending
 single-group, unknown-notation proposal from stable legacy downbeats. Direct
