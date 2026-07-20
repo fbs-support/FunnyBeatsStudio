@@ -80,9 +80,18 @@ Preset choices include:
 - `Balanced`
 - `Expressive dance`
 - `Minimal companion`
+- `Choreographed flow`
 
 Start with `Balanced`. Increase companion strength or activity only after the
 baseline is reviewable.
+
+Choose `Choreographed flow` when you want a longer-form multi-axis draft. It
+coordinates companion-axis pairs and bundles over phrases, varies its motifs
+across longer sections, and sustains Vibe between musical anchors instead of
+retriggering a series of short envelopes. It starts with every supported axis
+enabled, but you can disable axes without changing the remaining axes' planned
+motion. Confirmed meter produces the most reliable phrase structure; with only
+fallback beat anchors, the preset may use a reduced pattern.
 
 ## Apply modes
 

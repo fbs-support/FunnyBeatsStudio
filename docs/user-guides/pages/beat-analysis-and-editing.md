@@ -101,6 +101,14 @@ are shown as Suggested region cards with dashed measure and group projections
 under `Structure` > `Meter boundary`. They are not downbeats and do not affect
 motion generation until accepted.
 
+Rerunning audio analysis replaces analyzer-created meter regions and review
+proposals, but keeps regions that you previously accepted as well as manual and
+imported meter regions. If the replacement structural pulse grid cannot resolve
+a preserved region, its card remains visible while repeated measure lines,
+projected downbeats, and beat-aware generation may be unavailable in that part.
+Repair the Beat timing or rerun analysis when you want those projections back;
+delete or edit the region explicitly when you want to discard it.
+
 ## Open Beat editing
 
 Use `Edit > Beat editing...` or press `Ctrl+B`.

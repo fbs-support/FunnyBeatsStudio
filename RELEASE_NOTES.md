@@ -1,5 +1,50 @@
 # Release Notes
 
+## 1.2.3
+
+Changes since `1.2.2`.
+
+### Added
+
+- Added the `Choreographed flow` multi-axis motion preset. It coordinates
+  companion axes in phrase-scale pairs and bundles, varies motifs over longer
+  sections to reduce short-loop repetition, and produces a sustained Vibe bed.
+  All supported axes are enabled by default, and the existing companion
+  strength, activity, and axis controls remain available before preview.
+
+### Changed
+
+- Audio reanalysis now preserves meter regions that you previously accepted
+  from analysis, alongside manual and imported regions. Fresh analyzer timing,
+  automatic regions, and review proposals are still replaced. If the new
+  analysis timing cannot resolve a preserved region, the region remains visible
+  while repeated measure lines and beat-aware emphasis may remain unavailable
+  until the timing is repaired or reanalyzed.
+
+### Fixed
+
+- Improved High precision meter and downbeat analysis when several timing
+  interpretations lead to the same measure boundaries. Equivalent results no
+  longer create false ambiguity, and dense subdivisions are less likely to
+  pull analysis toward an incorrect half- or double-time interpretation.
+- Fixed timeline rendering regressions that could leave the selected timeline
+  blank or stale after changing layers or rebuilding axis tabs. Multi-axis
+  previews also appear correctly when generated while the Structure or Beat
+  grid layer is open.
+- Fixed timeline zoom and seek synchronization so zoom waits for the updated
+  scrollable range before restoring its anchor, and delayed media-position
+  updates do not unexpectedly recenter or overwrite a newer seek.
+- Fixed crossfade video replacement exports allowing later placement audio to
+  arrive early when a source audio stream or selected audio range ended before
+  its video segment.
+- Fixed point dragging so position `100` remains reachable when the point was
+  grabbed away from its center. Continuing the drag beyond the plot boundary
+  now contributes the full movement needed to reach either endpoint.
+
+### Notes
+
+- Project files continue to use format version `17`.
+
 ## 1.2.2
 
 Changes since `1.2.1`.
